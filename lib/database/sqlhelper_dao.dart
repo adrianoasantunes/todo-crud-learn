@@ -3,14 +3,13 @@ import 'package:sqflite/sqflite.dart' as sql;
 
 class SqlHelper {
   static Future<void> createTables(sql.Database database) async {
-    await database.execute(
-      'CREATE TABLE items('
-      'id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '
-      'title TEXT, '
-      'description TEXT, '
-      'created_at TIMESTAMP NOT NULL DEFAUL CURRENT_TIMESMAP'
-      ')',
-    );
+    await database.execute('''CREATE TABLE items(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        title TEXT,
+        description TEXT,
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )
+      ''');
   }
 
   static Future<sql.Database> db() async {
@@ -38,13 +37,13 @@ class SqlHelper {
   static Future<List<Map<String, dynamic>>> readAllItem() async {
     final db = await SqlHelper.db();
 
-    return db.query('itens', orderBy: 'id');
+    return db.query('items', orderBy: 'id');
   }
 
   static Future<List<Map<String, dynamic>>> readByIdItem(int id) async {
     final db = await SqlHelper.db();
 
-    return db.query('itens', where: 'id = ?', whereArgs: [id], limit: 1);
+    return db.query('items', where: 'id = ?', whereArgs: [id], limit: 1);
   }
 
   static Future<int> updateItem(
@@ -53,7 +52,7 @@ class SqlHelper {
     final data = {
       'title': title,
       'description': description,
-      'created_at': DateTime.now().toString(),
+      'createdAt': DateTime.now().toString(),
     };
 
     final result = await db.update(

@@ -85,7 +85,7 @@ class _TodoAppHomePageState extends State<TodoAppHomePage> {
             ElevatedButton(
               onPressed: () async {
                 if (id == null) {
-                  await _insertItem(id);
+                  await _insertItem();
                 }
 
                 if (id != null) {
@@ -146,7 +146,43 @@ class _TodoAppHomePageState extends State<TodoAppHomePage> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              itemCount: _journals.length, itemBuilder: itemBuilder),
+              itemCount: _journals.length,
+              itemBuilder: (context, index) => Card(
+                color: Colors.orange[200],
+                margin: const EdgeInsets.all(15),
+                child: ListTile(
+                  title: Text(_journals[index]['title']),
+                  subtitle: Text(_journals[index]['description']),
+                  trailing: SizedBox(
+                    width: 100,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => _showForm(
+                            _journals[index]['id'],
+                          ),
+                          icon: const Icon(
+                            Icons.edit,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => _deleteItem(
+                            _journals[index]['id'],
+                          ),
+                          icon: const Icon(
+                            Icons.delete,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showForm(null),
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
