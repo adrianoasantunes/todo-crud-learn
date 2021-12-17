@@ -1,6 +1,6 @@
 # todo
 
-A new Flutter project.
+A new Flutter project. Study.
 
 ## Getting Started
 
