@@ -3,8 +3,9 @@
 A new Flutter project. Study.
 
 Um estudo sobre o nosso famoso CRUD em flutter via tutorial encontrado pela internet, onde utilizo-me de SQFLITE (import 'package:sqflite/sqflite.dart')
-
-<img src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-06-512.png" alt="learn img" style="height:46; width:46;">
+</br>
+<img src="https://cdn2.iconfinder.com/data/icons/seo-and-website/100/SEO_data_save_protection-256.png" alt="image" style="hegth:40px; width:40px;"/>
+</br>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
